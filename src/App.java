@@ -9,7 +9,25 @@ import models.Maquina;
 public class App {
     public static void main(String[] args) throws Exception {
         List<Maquina> maquinas = crearMaquinas();
+        System.out.println("Prueba Metodo Subred");
+        System.out.println(maquinas.get(1).getSubred());// salida 210
+        System.out.println("Prueba Metodo Riesgo");
+        System.out.println(maquinas.get(1).getRiesgo());// 0
+        System.out.println(maquinas.get(5).getRiesgo());// 60
 
+        MaquinaController maquinaController = new MaquinaController();
+        List<Maquina> maquinasPrueba = Arrays.asList(
+            new Maquina("Servidor1", "192.168.200.15", Arrays.asList(5, 10, 3)),        // subred: 200, riesgo: 120
+            new Maquina("Servidor1", "10.0.200.88", Arrays.asList(10, 2)),              // subred: 200, riesgo: 120
+            new Maquina("Alpha2", "192.168.100.8", Arrays.asList(25, 1, 3, 10)),        // subred: 100, riesgo: 210
+            new Maquina("Beta22", "10.0.250.100", Arrays.asList(5, 5, 5)),              // subred: 250, riesgo: 75
+            new Maquina("Beta22", "172.16.250.101", Arrays.asList(10, 5)),              // subred: 250, riesgo: 75
+            new Maquina("Base de Datos 1", "10.0.50.99", Arrays.asList(5, 15, 20, 1)),  // subred: 50, riesgo: 320
+            new Maquina("ControlBackupX9", "172.16.90.5", Arrays.asList(25, 5, 10)),    // subred: 90, riesgo: 560
+            new Maquina("ControlBackupX9", "172.16.99.8", Arrays.asList(5, 10))         // subred: 99, riesgo: 240
+        );
+        System.out.println(maquinaController.filtrarPorSubred(maquinasPrueba, 100));
+        System.out.println(maquinaController.ordenarPorSubred(maquinaController.filtrarPorSubred(maquinasPrueba, 100)));
     }
 
     static List<Maquina> crearMaquinas() {

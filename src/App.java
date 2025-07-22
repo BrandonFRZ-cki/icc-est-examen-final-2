@@ -8,6 +8,7 @@ import models.Maquina;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        //HOLA SOLO PARA EL ACTIONS
         List<Maquina> maquinas = crearMaquinas();
         System.out.println("Prueba Metodo Subred");
         System.out.println(maquinas.get(1).getSubred());// salida 210
